@@ -1,0 +1,21 @@
+# settings for executing the run
+run_settings:
+  log_experiment: False
+
+# settings that handle the io
+io_settings:
+  run_dir: './runs'
+  pretrained_model: '' # leave empty string if not using pretrained model
+
+# training hyperparameters
+hyperparameters:
+  epochs: 1000
+  start_lr: 0.005
+  lr_decay_gamma: 0.99
+
+# model architecture settings
+model_settings:
+  policy: 'random_walk' # either 'random_walk' or 'none'
+  dim_h: 8
+  heads: 8
+  num_steps: 8
