@@ -15,7 +15,7 @@ hyperparameters:
 
 # model architecture settings
 model_settings:
-  policy: 'random_walk' # either 'random_walk' or 'none'
+  policy: 'random_walk' # either 'random_walk' or 'none' for default GAT
   dim_h: 8
   heads: 8
   num_steps: 8

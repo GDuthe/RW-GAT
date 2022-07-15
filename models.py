@@ -1,7 +1,6 @@
 import torch_geometric.utils
-from torch.nn import Linear, Sequential, BatchNorm1d, ReLU, Dropout
 import torch.nn.functional as F
-from torch_geometric.nn import GINConv, GATConv
+from torch_geometric.nn import GATConv
 import torch
 from torch_cluster import random_walk
 import networkx as nx
@@ -28,11 +27,11 @@ class RandomWalkingRewirer(torch.nn.Module):
 
         return added_edges
 
-class WalkerGAT(torch.nn.Module):
-    """Policy Walker GAT"""
+class RWGAT(torch.nn.Module):
+    """Rewired Walker GAT"""
 
     def __init__(self, policy, num_node_features, dim_h, heads, num_classes, num_steps):
-        super(WalkerGAT, self).__init__()
+        super(RWGAT, self).__init__()
         self.conv1 = GATConv(num_node_features, dim_h, heads)
         self.conv2 = GATConv(dim_h * heads, dim_h, heads)
         self.conv3 = GATConv(dim_h*heads, num_classes, 1)
@@ -86,5 +85,5 @@ if __name__ == '__main__':
 
     data.x = torch.tensor(np.array(list(pos.values())), dtype=torch.float)
 
-    PWGAT = WalkerGAT(policy='random_walk', num_node_features=2, dim_h=8, heads=8, num_classes=2, num_steps=4)
-    print(PWGAT(data.x, data.edge_index))
+    rwgat = RWGAT(policy='random_walk', num_node_features=2, dim_h=8, heads=8, num_classes=2, num_steps=4)
+    print(rwgat(data.x, data.edge_index))

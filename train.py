@@ -2,7 +2,7 @@ import numpy as np
 import torch
 import torch.optim as optim
 from torch_geometric.datasets import WikipediaNetwork
-from models import WalkerGAT
+from models import RWGAT
 from box import Box
 import yaml
 import os, argparse
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     device = torch.device('cuda' if torch.cuda.is_available() else  'cpu')
 
     # initialize the model
-    model = WalkerGAT(num_node_features=dataset.num_node_features, num_classes=dataset.num_classes, **config.model_settings)
+    model = RWGAT(num_node_features=dataset.num_node_features, num_classes=dataset.num_classes, **config.model_settings)
 
     # if using a pretrained model, load it here
     if config.io_settings.pretrained_model:
