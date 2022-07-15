@@ -1,7 +1,3 @@
-# settings for executing the run
-run_settings:
-  log_experiment: False
-
 # settings that handle the io
 io_settings:
   run_dir: './runs'
